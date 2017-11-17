@@ -22,7 +22,8 @@
     "files": [
       "src\\core.php",
       "src\\config.php",
-      "src\\functions.php"
+      "src\\helpers.php",
+      "src\\validators.php"
     ]
   },
   "require": {
