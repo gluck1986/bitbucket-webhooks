@@ -1,0 +1,35 @@
+{
+  "name": "gluck1986/bitbucket-webhooks",
+  "description": "bitbucket-webhooks",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kirill",
+      "email": "gluck1986@gmail.com"
+    }
+  ],
+  "scripts": {
+    "phpcs": "phpcs",
+    "phpunit": "phpunit"
+  },
+  "autoload": {
+    "psr-4": {
+      "BitbucketWebhooks\\": "src",
+      "BitbucketWebhooks\\Tests\\": "tests"
+
+    },
+    "files": [
+      "src\\core.php",
+      "src\\config.php",
+      "src\\functions.php"
+    ]
+  },
+  "require": {
+    "php": ">=7.0.0",
+    "squizlabs/php_codesniffer": "^3.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.4"
+  }
+}
