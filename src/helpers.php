@@ -2,6 +2,8 @@
 
 namespace BitbucketWebhooks\helpers;
 
+use Psr\Log\LoggerInterface;
+
 function checkIpInRange($ip, $cidrRanges): bool
 {
     // Check if given IP is inside a IP range with CIDR format
@@ -19,4 +21,37 @@ function checkIpInRange($ip, $cidrRanges): bool
     }
 
     return false;
+}
+
+function getProtocol()
+{
+    return isset($_SERVER['SERVER_PROTOCOL'])
+        ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
+}
+
+function getIp()
+{
+    return isset($_SERVER['HTTP_X_REAL_IP'])
+        ? $_SERVER['HTTP_X_REAL_IP'] : $_SERVER['REMOTE_ADDR'];
+}
+
+function getBody()
+{
+    return json_decode(file_get_contents('php://input'));
+}
+
+function getBranch($body, LoggerInterface $logger = null)
+{
+    try {
+        $branch = array_pop($body->push->changes)->new->name;
+    } catch (\Exception $exception) {
+        $logger->error(
+            $exception->getMessage(),
+            ['file' => __FILE__, 'line' => __LINE__]
+        );
+
+        $branch = '';
+    }
+
+    return trim(mb_convert_case($branch, MB_CASE_LOWER));
 }
