@@ -1,6 +1,6 @@
 install:
 	composer install
-	cp ./src/config.php.default ./src/config.php -n
+	cp ./src/config.php.default ./src/config.php -f
 test:
 	composer run-script phpunit
 lint:
