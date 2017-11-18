@@ -15,7 +15,7 @@ class Base extends \PHPUnit\Framework\TestCase
         $this->loger = $this
             ->getMockBuilder(\Monolog\Logger::class)
             ->disableOriginalConstructor()
-            ->setMethods(['critical', 'error'])
+            ->setMethods(['critical', 'error', 'warning', 'info'])
             ->getMock();
     }
 
