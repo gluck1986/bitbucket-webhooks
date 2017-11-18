@@ -11,7 +11,6 @@ function run(array $config)
 {
     $loger = getLogger();
     list($ips, $branches) = getConfig($loger, $config);
-
 }
 
 function getLogger()
@@ -32,7 +31,6 @@ function getConfig(LoggerInterface $loger, array $config)
     }
 
     return [$config['ips'], $config['branches']];
-
 }
 
 function responseBad($protocol, $message = '')
