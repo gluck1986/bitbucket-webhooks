@@ -15,7 +15,6 @@ function checkIpInRange($ip, $cidrRanges): bool
     foreach ($cidrRanges as $cidrRange) {
         list($subnet, $mask) = explode('/', $cidrRange);
         if (($ip & ~((1 << (32 - $mask)) - 1)) == ip2long($subnet)) {
-
             return true;
         }
     }
@@ -40,16 +39,14 @@ function getBody()
     return json_decode(file_get_contents('php://input'));
 }
 
-function getBranch($body, LoggerInterface $logger = null)
+function getBranch($body, LoggerInterface $logger)
 {
     try {
-        $branch = array_pop($body->push->changes)->new->name;
+        $branch = $body->pullrequest->destination->branch->name;
     } catch (\Exception $exception) {
         $logger->error(
-            $exception->getMessage(),
-            ['file' => __FILE__, 'line' => __LINE__]
+            $exception->getMessage()
         );
-
         $branch = '';
     }
 

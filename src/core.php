@@ -2,19 +2,20 @@
 
 namespace BitbucketWebhooks\core;
 
-use function BitbucketWebhooks\validators\validateConfig;
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Psr\Log\LoggerInterface;
+use function BitbucketWebhooks\validators\validateConfig;
 
 function run(array $config)
 {
     $loger = getLogger();
-    $ips = $config['ips'];
-    $branches = $config['branches'];
+    list($ips, $branches) = getConfig($loger, $config);
+
 }
 
-function getLogger() {
+function getLogger()
+{
     $logPath = dirname(__FILE__)
         . DIRECTORY_SEPARATOR . 'logs'
         . DIRECTORY_SEPARATOR . 'logs.log';
@@ -24,13 +25,13 @@ function getLogger() {
     return $log;
 }
 
-function getSettings(LoggerInterface $loger, array $config)
+function getConfig(LoggerInterface $loger, array $config)
 {
     if (!validateConfig($config, $loger)) {
         throw new \Exception('err config');
     }
 
-
+    return [$config['ips'], $config['branches']];
 
 }
 

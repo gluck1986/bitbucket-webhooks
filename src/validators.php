@@ -48,7 +48,6 @@ function validateConfig(array $config, LoggerInterface $loger): bool
                 }
 
                 return $result;
-
             },
             $result
         );
