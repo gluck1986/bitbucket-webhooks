@@ -26,14 +26,14 @@ function validateConfig(array $config, LoggerInterface $loger): bool
                     $result = false;
                     $loger->critical(
                         'config.php "branches" need key "branch", '
-                        .'containing branch name'
+                        . 'containing branch name'
                     );
                 }
                 if (!array_key_exists('path', $val) || !$val['path']) {
                     $result = false;
                     $loger->critical(
                         'config.php "branches" need key "path", '
-                        .'containing path to project root'
+                        . 'containing path to project root'
                     );
                 }
                 if (!array_key_exists('actions', $val)
@@ -43,7 +43,7 @@ function validateConfig(array $config, LoggerInterface $loger): bool
                     $result = false;
                     $loger->critical(
                         'config.php "branches" need key "actions", '
-                        .'containing console commands'
+                        . 'containing console commands'
                     );
                 }
 

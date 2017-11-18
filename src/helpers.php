@@ -41,8 +41,7 @@ function doJobs(
     $branch,
     LoggerInterface $loger,
     $worker = null
-)
-{
+) {
     if (!$worker) {
         $worker = function (string $job) {
             return doJob($job);
