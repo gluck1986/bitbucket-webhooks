@@ -75,13 +75,12 @@ function doJob(string $job)
 
 function buildJobLogMessage($job, $dir, $output, $branch, $err = '')
 {
-    $templateOk = '*success* date: %s; branch: %s; dir: %s; job: %s; result: %s;';
-    $templateErr = '*Error* date: %s; branch: %s; dir: %s;'
+    $templateOk = '*success* branch: %s; dir: %s; job: %s; result: %s;';
+    $templateErr = '*Error* branch: %s; dir: %s;'
         . ' job: %s; result: %s; err: %s';
     if ($err) {
         return sprintf(
             $templateErr,
-            (new \DateTime())->format(DATE_RFC3339),
             $branch,
             $dir,
             $job,
@@ -91,7 +90,6 @@ function buildJobLogMessage($job, $dir, $output, $branch, $err = '')
     } else {
         return sprintf(
             $templateOk,
-            (new \DateTime())->format(DATE_RFC3339),
             $branch,
             $dir,
             $job,

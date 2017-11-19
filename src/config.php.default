@@ -6,6 +6,9 @@ function getConfig(): array
 {
     return [
         'ips' => [
+            /*localhost*/
+            '::1/32',
+            '127.0.0.1/24',
             /* bitbucket_IP_ranges */
             '131.103.20.160/27',
             '165.254.145.0/26',
@@ -13,12 +16,12 @@ function getConfig(): array
         ],
         'branches' => [
             [
-                'branch' => 'master',
-                'path'   => 'path',
-                'actions'=> [
+                'branch' => 'master',    //ветка в которую должен произойти мерж через пул реквест
+                'path'   => 'path',       //директория которой соответсвует ветка
+                'actions'=> [      // действия в директории относящийся к искомой ветке
                     'git pull',
                     'composer install',
-                    'php yii migrate --interactive = 0', /* DANGER */
+                    //'php yii migrate --interactive = 0', /* DANGER */
                     //'make install'
                 ],
             ],

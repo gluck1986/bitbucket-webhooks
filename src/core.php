@@ -46,7 +46,7 @@ function run(array $config)
 
 function getLogger()
 {
-    $logPath = dirname(__FILE__)
+    $logPath = dirname(dirname(__FILE__))
         . DIRECTORY_SEPARATOR . 'logs'
         . DIRECTORY_SEPARATOR . 'logs.log';
     $log = new Logger('main');
