@@ -1,6 +1,7 @@
 install:
 	composer install
 	cp ./src/config.php.default ./src/config.php -n
+	mkdir ./logs -p
 	chmod 0755 ./logs
 test:
 	composer run-script phpunit
